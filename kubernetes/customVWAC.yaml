@@ -1,0 +1,21 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: pod-validation-webhook
+webhooks:
+- name: validate-pods.example.com
+  rules:
+  - apiGroups: [""]
+    apiVersions: ["v1"]
+    operations: ["CREATE", "UPDATE"]
+    resources: ["pods"]
+  clientConfig:
+    service:
+      name: webhook-service
+      namespace: default
+      path: "/validate"
+      port: 443
+    caBundle: <BASE64_ENCODED_CA_CERT>
+  admissionReviewVersions: ["v1"]
+  failurePolicy: Fail  # Reject if webhook is down
+  sideEffects: None
