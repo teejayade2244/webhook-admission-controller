@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webhook-server
+  namespace: webhooks
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: webhook-server
@@ -12,19 +13,26 @@ spec:
       labels:
         app: webhook-server
     spec:
+      serviceAccountName: webhook-service-account
       containers:
       - name: webhook
-        image: your-repo/webhook-server:latest
+        image: your-registry/webhook:v1
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
         ports:
-        - containerPort: 443
+        - containerPort: 8443
+        volumeMounts:
+        - name: webhook-tls-certs
+          mountPath: /etc/webhook/certs
+          readOnly: true
+      volumes:
+      - name: webhook-tls-certs
+        secret:
+          secretName: webhook-tls
+          
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: webhook-service
-spec:
-  selector:
-    app: webhook-server
-  ports:
-  - port: 443
-    targetPort: 443
