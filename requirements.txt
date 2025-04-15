@@ -1,3 +1,5 @@
 flask==3.0.2
 kubernetes
 logging
+pytest==8.0.0
+pytest-cov==4.1.0

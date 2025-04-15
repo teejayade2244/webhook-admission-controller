@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: webhook-service-account
-  namespace: webhooks  # Same namespace as your webhook deployment
+  namespace: webhooks  
 ---
 
 # webhook-cluster-role.yaml
