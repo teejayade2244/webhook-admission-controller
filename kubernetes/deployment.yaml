@@ -16,7 +16,7 @@ spec:
       serviceAccountName: webhook-service-account
       containers:
       - name: webhook
-        image: your-registry/webhook:v1
+        image: teejay4125/validating-webhook-ac:latest
         resources:
           requests:
             cpu: "100m"
