@@ -37,7 +37,7 @@ cd webhook-admission-controller
 #### 2. Generate TLS Certificates
 
 ```bash
-./scripts/generate-certs.sh
+./CA-script.sh
 ```
 
 This script generates a self-signed TLS certificate and key for secure communication between the API server and webhook.
@@ -63,11 +63,15 @@ kubectl apply -f kubernetes/deployment.yaml
 kubectl apply -f kubernetes/service.yaml
 kubectl apply -f kubernetes/rbac.yaml
 ```
+OR
+ ```bash
+  ./K8s-script.sh
+```
 
 #### 6. Configure the ValidatingWebhookConfiguration
 
 ```bash
-kubectl apply -f kubernetes/validating-webhook-config.yaml
+kubectl apply -f kubernetes/customVWAC.yaml
 ```
 
 ## 🧪 Testing the Webhook
@@ -131,6 +135,7 @@ webhook-admission-controller/
 
 ## 🛠️ CI/CD Integration
 
+
 This project includes a Jenkins pipeline for building, testing, and deploying the webhook. The pipeline:
 
 1. Checks out the code from the repository
@@ -169,3 +174,8 @@ If you have any questions or suggestions, please open an issue or contact me via
 ---
 
 ⭐ If you find this project useful, please consider giving it a star on GitHub!
+
+![image](https://github.com/user-attachments/assets/e5aaf4b7-fcb5-4ccf-bb08-5e5978acb684)
+
+
+
