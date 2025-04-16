@@ -1,6 +1,7 @@
 # Kubernetes Validating Admission Webhook Controller
 
 A custom Kubernetes validating admission webhook that enforces security policies at the API server level. This webhook intercepts pod creation requests and validates them against security best practices before they're persisted to etcd.
+![image](https://github.com/user-attachments/assets/e5aaf4b7-fcb5-4ccf-bb08-5e5978acb684)
 
 ## 🛡️ Security Policies Enforced
 
@@ -135,14 +136,16 @@ webhook-admission-controller/
 
 ## 🛠️ CI/CD Integration
 
+![image](https://github.com/user-attachments/assets/b8e6cc2b-793e-4a20-ac5e-036df4feac51)
 
 This project includes a Jenkins pipeline for building, testing, and deploying the webhook. The pipeline:
-
 1. Checks out the code from the repository
 2. Installs Python dependencies
 3. Runs unit tests
 4. Builds and pushes the Docker image
 5. Deploys the webhook to the Kubernetes cluster
+   
+![image](https://github.com/user-attachments/assets/02c72c00-2139-4b31-9852-91cf737e3b72)
 
 For detailed pipeline configuration, see the `Jenkinsfile` in the repository.
 
@@ -175,7 +178,7 @@ If you have any questions or suggestions, please open an issue or contact me via
 
 ⭐ If you find this project useful, please consider giving it a star on GitHub!
 
-![image](https://github.com/user-attachments/assets/e5aaf4b7-fcb5-4ccf-bb08-5e5978acb684)
+
 
 
 
