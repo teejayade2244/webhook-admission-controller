@@ -68,6 +68,16 @@ pipeline {
                 }
             }
         }
+
+        stage('clean workspace') {
+            steps {
+                script {
+                    echo "Cleaning workspace.."
+                    deleteDir()
+                }
+            }
+        }
+
     }
 
     post {

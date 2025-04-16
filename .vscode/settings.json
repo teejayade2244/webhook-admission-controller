@@ -1,7 +1,10 @@
 {
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#242E43",
-    "titleBar.activeBackground": "#32405E",
-    "titleBar.activeForeground": "#F9FAFC"
-  }
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#242E43",
+        "titleBar.activeBackground": "#32405E",
+        "titleBar.activeForeground": "#F9FAFC"
+    },
+    "python.testing.pytestArgs": ["webhook"],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
