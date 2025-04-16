@@ -54,9 +54,9 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-credentials') {
-                        sh """
-                            sudo docker build -t ${DOCKER_IMAGE} .
-                        """
+                        sh '''
+                            docker build -t ${DOCKER_IMAGE} .
+                        '''
                     }
                 }
             }
@@ -76,9 +76,9 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-credentials') {
-                        sh """
-                            sudo docker push ${DOCKER_IMAGE}
-                        """
+                        sh '''
+                            docker push ${DOCKER_IMAGE}
+                        '''
                     }
                 }
             }
@@ -90,7 +90,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                         sh """
                             ls -l
-                            chmod +x k8s-script.sh CA-script.sh
+                            chmod +x K8s-script.sh CA-script.sh
                             ./CA-script.sh
                             ./K8s-script.sh
                         """

@@ -3,6 +3,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   name: pod-validation-webhook
+  namespace: webhooks
 webhooks:
 - name: webhook-service.webhooks.svc.cluster.local
   rules:
