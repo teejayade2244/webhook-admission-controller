@@ -41,12 +41,33 @@ pipeline {
             }
         }
 
-        stage('Build and Push Docker Image') {
+        stage('Build  Docker Image') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-credentials') {
                         sh """
                             sudo docker build -t ${DOCKER_IMAGE} .
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Trivy Image Scan') {
+            steps {
+                sh '''
+                    echo "Scanning Docker image for vulnerabilities..."
+                    trivy image --exit-code 1 --severity CRITICAL,HIGH ${DOCKER_IMAGE}
+                '''
+            }
+        
+        }
+
+         stage('Push Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'docker-credentials') {
+                        sh """
                             sudo docker push ${DOCKER_IMAGE}
                         """
                     }
@@ -68,6 +89,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('clean workspace') {
             steps {
