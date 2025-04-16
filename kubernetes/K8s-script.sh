@@ -1,19 +1,19 @@
 # Create the new secret
-sudo kubectl -n webhooks create secret tls webhook-tls --cert=tls.crt --key=tls.key
+kubectl -n webhooks create secret tls webhook-tls --cert=tls.crt --key=tls.key
 
 # Create the RBAC configuration
-sudo kubectl create -f RBAC.yaml 
+kubectl create -f RBAC.yaml 
 
 # Deploy the webhook service
-sudo kubectl create -f service.yaml 
+kubectl create -f service.yaml 
 
 # Deploy the webhook server
-sudo kubectl create -f deployment.yaml  # webhook deployment file
+kubectl create -f deployment.yaml  # webhook deployment file
 
 # Wait for the pods to be fully ready
 echo "Waiting for webhook pods to be ready..."
 sleep 10
-sudo kubectl get pods -n webhooks
+kubectl get pods -n webhooks
 
 # Only now apply the webhook configuration with the new CA bundle
 CA_BUNDLE=$(cat ca.crt | base64 | tr -d '\n')
@@ -49,4 +49,4 @@ webhooks:
 EOF
 # Apply the updated webhook configuration
 # This will register the webhook with the new CA bundl
-sudo kubectl create -f customVWAC.yaml.yaml
+kubectl create -f customVWAC.yaml.yaml

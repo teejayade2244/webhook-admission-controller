@@ -56,12 +56,12 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                dir("webhook-admission-controller/kubernetes") {
-                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                dir("kubernetes/") {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: '')]) {
                         sh """
+                            ls -l
                             chmod +x k8s-script.sh
-                            export KUBECONFIG=${KUBECONFIG}
-                            ./k8s-script.sh
+                            ./K8s-script.sh
                         """
                     }
                 }
