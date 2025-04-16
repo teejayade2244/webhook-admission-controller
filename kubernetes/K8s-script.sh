@@ -1,3 +1,4 @@
+kubectl create namespace webhooks
 # Create the new secret
 kubectl -n webhooks create secret tls webhook-tls --cert=tls.crt --key=tls.key
 
