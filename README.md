@@ -118,7 +118,7 @@ Error from server: admission webhook "pod-policy.security.acme.com" denied the r
 
 ```
 webhook-admission-controller/
-├── app/
+├── webhook/
 │   ├── __init__.py
 │   ├── webhook.py          # Main webhook implementation
 ├── kubernetes/             # K8s manifests
@@ -126,8 +126,6 @@ webhook-admission-controller/
 │   ├── service.yaml
 │   ├── rbac.yaml
 │   └── validating-webhook-config.yaml
-├── scripts/
-│   └── generate-certs.sh   # Certificate generation script
 ├── Dockerfile
 ├── Jenkinsfile
 ├── requirements.txt
