@@ -50,4 +50,4 @@ webhooks:
 EOF
 # Apply the updated webhook configuration
 # This will register the webhook with the new CA bundl
-kubectl create -f customVWAC.yaml.yaml
+kubectl create -f customVWAC.yaml

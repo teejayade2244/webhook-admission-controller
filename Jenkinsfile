@@ -57,10 +57,11 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 dir("kubernetes/") {
-                    withCredentials([file(credentialsId: 'kubeconfig', variable: '')]) {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                         sh """
                             ls -l
-                            chmod +x k8s-script.sh
+                            chmod +x k8s-script.sh CA-script.sh
+                            ./CA-script.sh
                             ./K8s-script.sh
                         """
                     }
