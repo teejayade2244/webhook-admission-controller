@@ -10,6 +10,15 @@ pipeline {
     }
 
     stages {
+         stage('clean workspace') {
+            steps {
+                script {
+                    echo "Cleaning workspace.."
+                    deleteDir()
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
                 checkout scmGit(
@@ -86,16 +95,6 @@ pipeline {
                             ./K8s-script.sh
                         """
                     }
-                }
-            }
-        }
-
-
-        stage('clean workspace') {
-            steps {
-                script {
-                    echo "Cleaning workspace.."
-                    deleteDir()
                 }
             }
         }
