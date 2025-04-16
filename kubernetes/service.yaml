@@ -7,7 +7,7 @@ spec:
   selector:
     app: webhook-server
   ports:
-    - port: 443
+    - port: 8443
       targetPort: 8443
       protocol: TCP
       name: https
