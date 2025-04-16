@@ -1,6 +1,6 @@
 import unittest
 import json
-from webhook import app, validate_resources
+from webhook.webhook import app, validate_resources
 
 class TestWebhook(unittest.TestCase):
     def setUp(self):
