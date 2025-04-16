@@ -24,13 +24,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Unit Tests') {
             steps {
-                sh 'python -m pytest test_webhook.py -v'
+                sh '''
+                    . venv/bin/activate
+                    python -m pytest test_webhook.py -v
+                '''
             }
         }
 
@@ -39,8 +46,8 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'docker-credentials') {
                         sh """
-                            docker build -t ${DOCKER_IMAGE} .
-                            docker push ${DOCKER_IMAGE}
+                            sudo docker build -t ${DOCKER_IMAGE} .
+                            sudo docker push ${DOCKER_IMAGE}
                         """
                     }
                 }

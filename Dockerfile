@@ -8,10 +8,11 @@ RUN apk add --no-cache gcc musl-dev linux-headers
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-COPY webhook.py .
+COPY webhook/webhook.py .
 
 # Create directory for TLS certificates
 RUN mkdir -p /etc/webhook/certs
